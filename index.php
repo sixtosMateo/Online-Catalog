@@ -1,6 +1,6 @@
 <?php
 include '../includes/dbConnection.php';
-$conn = getDatabaseConnection("nfl");  #Still needs to be created
+$dbConn = getDatabaseConnection("nfl");  #Still needs to be created
 
 $status = $_GET['status']; // Player status either active or inactive
 $hall = $_GET['hall'];   // Filter Hall of fame results to get that dates between certain years
@@ -9,8 +9,41 @@ $order = $_GET['order'];  // Order Team Name by ascending or descending
 
 function catalog(){  
     global $status, $hall, $wins, $order;
+    global $dbConn;
     
-    
+    if(!empty($status)){
+        if($status == "active"){
+            echo "<h2>Active Players</h2>";
+            
+            $sql = "SELECT *
+            FROM `players`
+            WHERE status = 'active'";
+ 
+        }
+        if($status == "inactive"){
+            echo "<h2>Inactive Players</h2>";
+            $sql = "SELECT *
+            FROM `players`
+            WHERE status = 'inactive'";
+        }
+        
+        $statement= $dbConn->prepare($sql); 
+        $statement->execute(); 
+        $records = $statement->fetchALL(PDO::FETCH_ASSOC);
+        
+        echo "<table border = 1>";
+        echo "<th>First Name</th>";
+        echo "<th>Last Name</th>";
+        echo "<th>Team</th>";
+        echo "<th>Position</th>";
+        echo "<th>Status</th>";
+        foreach($records as $record) {
+              echo "<tr>";
+              echo "<td>" . $record['firstName'] . "</td>". "<td>" .  $record['lastName'] . "</td>". "<td>" . $record['team'] . "</td>" .  "<td>" . $record['position'] . "</td>". "<td>" . $record['status'] . "</td>";
+             echo "</tr>";
+          }
+        echo "</table>";
+    }
 }
 
 
