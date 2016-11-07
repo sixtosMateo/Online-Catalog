@@ -108,6 +108,80 @@ function catalog(){
           }
         echo "</table>";
     }
+    if(!empty($wins)){
+        echo "<h2>Super Bowl - Winning Teams </h2>";
+        
+        if($wins == "none"){
+            $sql = "SELECT *
+            FROM `teams`
+            WHERE superBowlWins = 0
+            ORDER BY teamName ASC ";
+        }
+        if($wins == "most"){
+            $sql = "SELECT *
+            FROM `teams`
+            ORDER BY superBowlWins DESC
+            LIMIT 1 ";
+        }
+        if($wins == "topthree"){
+            $sql = "SELECT *
+            FROM `teams`
+            ORDER BY superBowlWins DESC
+            LIMIT 3 ";
+        }
+        if($wins == "least"){
+            $sql = "SELECT *
+            FROM `teams`
+            WHERE superBowlWins <1
+            ORDER BY teamName ASC ";
+        }
+        $statement= $dbConn->prepare($sql); 
+        $statement->execute(); 
+        $records = $statement->fetchALL(PDO::FETCH_ASSOC);
+        
+        echo "<table border = 1>";
+        echo "<th>Team Name</th>";
+        echo "<th>Coach</th>";
+        echo "<th>Super Bowl Wins</th>";
+
+        foreach($records as $record) {
+              echo "<tr>";
+                  echo "<td>" . $record['teamName'] . "</td>". "<td>" .  $record['coach'] . "</td>". "<td>" . $record['superBowlWins'] . "</td>";
+             echo "</tr>";
+          }
+        echo "</table>";
+    }
+    if(!empty($order)){
+        echo "<h2>Teams </h2>";
+        if($order == "ascending"){
+            $sql = "SELECT *
+            FROM `teams`
+            ORDER BY teamName ASC ";
+        }
+        if($order == "descending"){
+            $sql = "SELECT *
+            FROM `teams`
+            ORDER BY teamName DESC ";
+            
+        }
+        $statement= $dbConn->prepare($sql); 
+        $statement->execute(); 
+        $records = $statement->fetchALL(PDO::FETCH_ASSOC);
+        // teamName 	homeTown 	wins 	losses 	ties 	coach 
+        echo "<table border = 1>";
+        echo "<th>Team Name</th>";
+        echo "<th>Coach</th>";
+        echo "<th>Home Name</th>";
+        echo "<th>Wins</th>";
+        echo "<th>Losses</th>";
+        echo "<th>Ties</th>";
+        foreach($records as $record) {
+              echo "<tr>";
+              echo "<td>" . $record['teamName'] . "</td>". "<td>" .  $record['coach'] . "</td>". "<td>" . $record['homeTown'] . "</td>" .  "<td>" . $record['wins'] . "</td>". "<td>" . $record['losses'] . "</td>" . "<td>" . $record['ties'] . "</td>";
+             echo "</tr>";
+          }
+        echo "</table>";
+    }
 }
 
 
@@ -142,7 +216,7 @@ function catalog(){
                 Super Bowl Wins - 
                 <select name="wins">
                   <option value=""> - Select One - </option>
-                  <option value="none">None</option>
+                  <option value="none">No Wins</option>
                   <option value="most">Most Wins</option>
                   <option value="topthree">Top 3</option>
                   <option value="least">Least Wins</option>
