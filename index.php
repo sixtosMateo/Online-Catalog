@@ -239,9 +239,10 @@ function catalog(){
             
             <!-- 4) Users can click on an item to get further info (10 points) -->
             
-            <p>Go to Shopping Cart</p>
             <form>
                 <!-- 5) Users can add items to shopping cart using a Session (10 points)-->
+                <input type="submit" value="Add a Player!" name="addPlayer"/>
+                <input type="submit" value="Add a Team" name="addTeam"/>
                 <!-- 6) Users can see the content of the shopping cart (10 points) -->
             </form>
             
