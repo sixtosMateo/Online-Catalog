@@ -194,7 +194,7 @@ function catalog(){
     </head>
     <body>
         <main>
-            <h1>Online Catalog</h1>
+            <h1>NFL Custom Shirts</h1>
             <fieldset> 
             <legend> Search Results</legend>
             <form method="GET">
@@ -241,8 +241,7 @@ function catalog(){
             <br> <br>
             <form>
                 <!-- 5) Users can add items to shopping cart using a Session (10 points)-->
-                <input type="submit" value="Add a Player!" name="addPlayer"/>
-                <input type="submit" value="Add a Team" name="addTeam"/>
+                <input type="submit" value="Add to Cart!" name="cart"/>
                 <!-- 6) Users can see the content of the shopping cart (10 points) -->
             </form>
             <br> <br>
