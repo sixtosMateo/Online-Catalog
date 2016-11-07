@@ -44,6 +44,70 @@ function catalog(){
           }
         echo "</table>";
     }
+    if(!empty($hall)){
+        //sixty 1960-1969
+        echo "<h2>Hall of Fame</h2>";
+        if($hall == "sixty"){
+            $sql = "SELECT *
+            FROM `hall_of_fame`
+            WHERE yearInducted
+            BETWEEN 1960
+            AND 1969 ";
+            
+        }
+        //seventy 1970 - 1979
+        if($hall == "seventy"){
+            $sql = "SELECT *
+            FROM `hall_of_fame`
+            WHERE yearInducted
+            BETWEEN 1970
+            AND 1979 ";
+            
+        }
+        //eighty 1980 - 1989
+        if($hall == "eighty"){
+            $sql = "SELECT *
+            FROM `hall_of_fame`
+            WHERE yearInducted
+            BETWEEN 1980
+            AND 1989 ";
+            
+        }
+        //ninty 1990 - 1999
+        if($hall == "ninty"){
+            $sql = "SELECT *
+            FROM `hall_of_fame`
+            WHERE yearInducted
+            BETWEEN 1990
+            AND 1999 ";
+            
+        }
+        //twenty 2000 - 3000
+        if($hall == "twenty"){
+            $sql = "SELECT *
+            FROM `hall_of_fame`
+            WHERE yearInducted
+            BETWEEN 2000
+            AND 3000 ";
+            
+        }
+        $statement= $dbConn->prepare($sql); 
+        $statement->execute(); 
+        $records = $statement->fetchALL(PDO::FETCH_ASSOC);
+        
+        echo "<table border = 1>";
+        echo "<th>First Name</th>";
+        echo "<th>Last Name</th>";
+        echo "<th>Team</th>";
+        echo "<th>Position</th>";
+        echo "<th>Year Inducted</th>";
+        foreach($records as $record) {
+              echo "<tr>";
+              echo "<td>" . $record['firstName'] . "</td>". "<td>" .  $record['lastName'] . "</td>". "<td>" . $record['team'] . "</td>" .  "<td>" . $record['position'] . "</td>". "<td>" . $record['yearInducted'] . "</td>";
+             echo "</tr>";
+          }
+        echo "</table>";
+    }
 }
 
 
@@ -70,7 +134,7 @@ function catalog(){
                   <option value=""> - Select One - </option>
                   <option value="sixty">1960</option>
                   <option value="seventy">1970</option>
-                  <option value="eight">1980</option>
+                  <option value="eighty">1980</option>
                   <option value="ninty">1990</option>
                   <option value="twenty">2000</option>
                 </select>
