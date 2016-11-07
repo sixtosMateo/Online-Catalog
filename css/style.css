@@ -2,4 +2,16 @@
     width: 900px;
     margin:0 auto;
     border: 2px solid gray;
+    text-align: center;
+}
+table{
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px;
+}
+fieldset{
+    margin: 30px;
+}
+form{
+    padding: 10px;
 }
