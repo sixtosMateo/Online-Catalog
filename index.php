@@ -32,6 +32,7 @@ function catalog(){
         $records = $statement->fetchALL(PDO::FETCH_ASSOC);
         
         echo "<table border = 1>";
+        echo "<th></th>";
         echo "<th>First Name</th>";
         echo "<th>Last Name</th>";
         echo "<th>Team</th>";
@@ -39,6 +40,7 @@ function catalog(){
         echo "<th>Status</th>";
         foreach($records as $record) {
               echo "<tr>";
+              echo "<td>" . "<input type='checkbox' name = 'cart[]' value=". $record['firstName'] . $record['lastName'] .">" . "</td>";
               echo "<td>" . $record['firstName'] . "</td>". "<td>" .  $record['lastName'] . "</td>". "<td>" . $record['team'] . "</td>" .  "<td>" . $record['position'] . "</td>". "<td>" . $record['status'] . "</td>";
              echo "</tr>";
           }
@@ -96,6 +98,7 @@ function catalog(){
         $records = $statement->fetchALL(PDO::FETCH_ASSOC);
         
         echo "<table border = 1>";
+        echo "<th></th>";
         echo "<th>First Name</th>";
         echo "<th>Last Name</th>";
         echo "<th>Team</th>";
@@ -103,6 +106,7 @@ function catalog(){
         echo "<th>Year Inducted</th>";
         foreach($records as $record) {
               echo "<tr>";
+              echo "<td>" . "<input type='checkbox' name = 'cart[]' value=". $record['firstName'] . $record['lastName'] .">" . "</td>";
               echo "<td>" . $record['firstName'] . "</td>". "<td>" .  $record['lastName'] . "</td>". "<td>" . $record['team'] . "</td>" .  "<td>" . $record['position'] . "</td>". "<td>" . $record['yearInducted'] . "</td>";
              echo "</tr>";
           }
@@ -140,13 +144,15 @@ function catalog(){
         $records = $statement->fetchALL(PDO::FETCH_ASSOC);
         
         echo "<table border = 1>";
+        echo "<th></th>";
         echo "<th>Team Name</th>";
         echo "<th>Coach</th>";
         echo "<th>Super Bowl Wins</th>";
 
         foreach($records as $record) {
               echo "<tr>";
-                  echo "<td>" . $record['teamName'] . "</td>". "<td>" .  $record['coach'] . "</td>". "<td>" . $record['superBowlWins'] . "</td>";
+              echo "<td>" . "<input type='checkbox' name = 'cart[]' value=". $record['teamName'] .">" . "</td>";
+              echo "<td>" . $record['teamName'] . "</td>". "<td>" .  $record['coach'] . "</td>". "<td>" . $record['superBowlWins'] . "</td>";
              echo "</tr>";
           }
         echo "</table>";
@@ -169,6 +175,7 @@ function catalog(){
         $records = $statement->fetchALL(PDO::FETCH_ASSOC);
         // teamName 	homeTown 	wins 	losses 	ties 	coach 
         echo "<table border = 1>";
+        echo "<th></th>";
         echo "<th>Team Name</th>";
         echo "<th>Coach</th>";
         echo "<th>Home Name</th>";
@@ -177,6 +184,7 @@ function catalog(){
         echo "<th>Ties</th>";
         foreach($records as $record) {
               echo "<tr>";
+              echo "<td>" . "<input type='checkbox' name = 'cart[]' value=". $record['teamName'] .">" . "</td>";
               echo "<td>" . $record['teamName'] . "</td>". "<td>" .  $record['coach'] . "</td>". "<td>" . $record['homeTown'] . "</td>" .  "<td>" . $record['wins'] . "</td>". "<td>" . $record['losses'] . "</td>" . "<td>" . $record['ties'] . "</td>";
              echo "</tr>";
           }
@@ -194,7 +202,7 @@ function catalog(){
     </head>
     <body>
         <main>
-            <h1>NFL Custom Shirts</h1>
+            <h1>NFL Trading Cards</h1>
             <fieldset> 
             <legend> Search Results</legend>
             <form method="GET">
@@ -229,18 +237,17 @@ function catalog(){
                 
             </form>
             </fieldset>
-            
-            <?php
-            if(isset($_GET['submitForm'])){
-                catalog();
-            }
-            
-            ?>
+        
             
             <!-- 4) Users can click on an item to get further info (10 points) -->
             <br> <br>
-            <form>
+            <form action="addCart.php" class="continue">
                 <!-- 5) Users can add items to shopping cart using a Session (10 points)-->
+                <?php
+                    if(isset($_GET['submitForm'])){
+                    catalog();
+                    }
+                ?>
                 <input type="submit" value="Add to Cart!" name="cart"/>
                 <!-- 6) Users can see the content of the shopping cart (10 points) -->
             </form>
