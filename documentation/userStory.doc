@@ -12,12 +12,12 @@ The "index.php" Page:
 The "addCart.php" Page:
   1. All players and teams that have been chosen will be displayed (If you press back, it will save previous selected cards)
   2. User can chose from one of two buttons - "Delete Cart!" or "Finished"
-      Delete Cart Button - Will delete all items from cart permantly and re-route user back to "index.php" page
+      Delete Cart Button - Will delete all items from cart permanently and re-route user back to "index.php" page
       Finished Button - Send to a thank you for shopping page
       
 The "thankYou.php" Page:
   1. Displays a simple "Thank You for Shopping with Us!"
-  2. Will delete all items from cart permantly - as if done shopping
+  2. Will delete all items from cart permanently - as if done shopping
   3. User can chose to go back to main page
   
   
