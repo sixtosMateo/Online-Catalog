@@ -259,6 +259,7 @@ function catalog(){
               <li><a href="../Online-Catalog/documentation/userStory.doc">User Story</a></li>
               <li><a href="../Online-Catalog/documentation/databaseSchema.JPG">Database Schema</a></li>
               <li><a href="../Online-Catalog/documentation/mockUp.JPG">Mock Up</a></li>
+              <li><a href="https://github.com/sixtosMateo/Online-Catalog">GitHub</a></li>
             </ul> 
         </main>
     </body>
