@@ -38,6 +38,13 @@ foreach($_SESSION['cart'] as $element ) {
             <form action="thankYou.php">
                 <input type="submit" value="Finished!" />
             </form>
+            <hr>
+            <h3>Documentation: </h3>
+             <ul>
+              <li><a href="../Online-Catalog/documentation/userStory.doc">User Story</a></li>
+              <li><a href="../Online-Catalog/documentation/databaseSchema.JPG">Database Schema</a></li>
+              <li><a href="../Online-Catalog/documentation/mockUp.JPG">Mock Up</a></li>
+            </ul> 
         </main>
     </body>
 </html>
