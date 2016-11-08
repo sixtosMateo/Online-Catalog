@@ -1,4 +1,5 @@
 <?php
+session_start();
 include '../includes/dbConnection.php';
 $dbConn = getDatabaseConnection("nfl");  #Still needs to be created
 
@@ -241,14 +242,14 @@ function catalog(){
             
             <!-- 4) Users can click on an item to get further info (10 points) -->
             <br> <br>
-            <form action="addCart.php" class="continue">
+            <form method="GET" action="addCart.php" class="continue">
                 <!-- 5) Users can add items to shopping cart using a Session (10 points)-->
                 <?php
                     if(isset($_GET['submitForm'])){
                     catalog();
                     }
                 ?>
-                <input type="submit" value="Add to Cart!" name="cart"/>
+                <input type="submit" name ="submit" value="Continue"/>
                 <!-- 6) Users can see the content of the shopping cart (10 points) -->
             </form>
             <br> <br>
