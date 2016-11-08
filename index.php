@@ -9,13 +9,10 @@ $wins = $_GET['wins'];  // Filter by amount of Super Bowl Wins
 $order = $_GET['order'];  // Order Team Name by ascending or descending
 
 
-
-
-function catalog(){  
-    global $status, $hall, $wins, $order;
-    global $dbConn;
-    
-    if(!empty($status)){
+function statusFilter(){
+   global $status; 
+   global $dbConn;
+   if(!empty($status)){
         if($status == "active"){
             echo "<h2>Active Players</h2>";
             
@@ -50,6 +47,11 @@ function catalog(){
           }
         echo "</table>";
     }
+}
+
+function hallFilter(){
+    global  $hall;
+    global $dbConn;
     if(!empty($hall)){
         //sixty 1960-1969
         echo "<h2>Hall of Fame</h2>";
@@ -116,6 +118,11 @@ function catalog(){
           }
         echo "</table>";
     }
+     
+}
+
+function winsFilter(){
+    global  $wins,$dbConn;
     if(!empty($wins)){
         echo "<h2>Super Bowl - Winning Teams </h2>";
         
@@ -161,6 +168,15 @@ function catalog(){
           }
         echo "</table>";
     }
+}
+
+
+
+function orderFilter(){  
+    global  $order;
+    global $dbConn;
+    
+
     if(!empty($order)){
         echo "<h2>Teams </h2>";
         if($order == "ascending"){
@@ -186,6 +202,8 @@ function catalog(){
         echo "<th>Wins</th>";
         echo "<th>Losses</th>";
         echo "<th>Ties</th>";
+        
+        
         foreach($records as $record) {
               echo "<tr>";
               echo "<td>" . "<input type='checkbox' name = 'cart[]' value=". $record['teamName'] .">" . "</td>";
@@ -195,6 +213,7 @@ function catalog(){
         echo "</table>";
     }
 }
+
 
 
 ?>
@@ -215,6 +234,7 @@ function catalog(){
                 Player Status - <input type="radio" name="status" value="active"> Active
                 <input type="radio" name="status" value="inactive"> Inactive
                 <br/>
+                
                 Hall of Fame - 
                 <select name="hall">
                   <option value=""> - Select One - </option>
@@ -249,15 +269,31 @@ function catalog(){
                 <!-- 5) Users can add items to shopping cart using a Session (10 points)-->
                 <?php
                     if(isset($_GET['submitForm'])){
-                    catalog();
+                       
+                       if(!empty(isset($_GET['status']))){
+                           statusFilter();
+                       }
+                       
+                       if(!empty(isset($_GET['hall']))){
+                           hallFilter();
+                       }
+                       
+                       if(!empty(isset($_GET['wins']))){
+                           winsFilter();
+                       }
+                       
+                        if(!empty(isset($_GET['order']))){
+                            orderFilter();
+                       }
+                        
                     }
-                    if(isset($_GET['submit']) && (empty($status) && empty($hall) && empty($wins) && empty($order))){
-                         echo "Apply one filter option and select an item";
-                     }
                     
                 ?>
                 <input type="submit" name ="submit" value="Continue"/>
                 <!-- 6) Users can see the content of the shopping cart (10 points) -->
+                
+             
+                
             </form>
             <br> <br>
             <hr>

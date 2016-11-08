@@ -7,16 +7,23 @@ if(!isset($_SESSION['cart'])){
 }
 
 $cart = $_GET['cart'];
-foreach($cart as $element )
-{   
-    if (!in_array($element, $_SESSION['cart'])) { //avoid duplicate device Ids
-       $_SESSION['cart'][] = $element;
-    } 
-}
-
-foreach($_SESSION['cart'] as $element ) {
-    echo "<p>" . $element . "</p>";
-}   
+    if(!empty($cart))
+    {
+    foreach($cart as $element )
+    {   
+        if (!in_array($element, $_SESSION['cart'])) { //avoid duplicate device Ids
+           $_SESSION['cart'][] = $element;
+        } 
+    }
+    
+    foreach($_SESSION['cart'] as $element ) {
+        echo "<p>" . $element . "</p>";
+    }   
+    }
+    else{
+        header('Location: index.php');
+        
+    }
 }
 
 
