@@ -1,12 +1,15 @@
 <?php
 session_start();
-include '../includes/dbConnection.php';
+include '../../includes/dbConnection.php';
 $dbConn = getDatabaseConnection("nfl");  #Still needs to be created
 
 $status = $_GET['status']; // Player status either active or inactive
 $hall = $_GET['hall'];   // Filter Hall of fame results to get that dates between certain years
 $wins = $_GET['wins'];  // Filter by amount of Super Bowl Wins
 $order = $_GET['order'];  // Order Team Name by ascending or descending
+
+
+
 
 function catalog(){  
     global $status, $hall, $wins, $order;
@@ -248,6 +251,10 @@ function catalog(){
                     if(isset($_GET['submitForm'])){
                     catalog();
                     }
+                    if(isset($_GET['submit']) && (empty($status) && empty($hall) && empty($wins) && empty($order))){
+                         echo "Apply one filter option and select an item";
+                     }
+                    
                 ?>
                 <input type="submit" name ="submit" value="Continue"/>
                 <!-- 6) Users can see the content of the shopping cart (10 points) -->
