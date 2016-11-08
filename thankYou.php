@@ -1,3 +1,8 @@
+<?php
+session_start();
+session_destroy();
+
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,6 +12,9 @@
     <body>
         <main>
             <h1>Thank You for Shopping with Us!</h1>
+            <form action="index.php">
+                <input type="submit" value="Back to Site!" />
+            </form>
         </main>
     </body>
 </html>

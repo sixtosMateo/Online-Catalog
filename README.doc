@@ -17,6 +17,7 @@ The "addCart.php" Page:
       
 The "thankYou.php" Page:
   1. Displays a simple "Thank You for Shopping with Us!"
-  
+  2. Will delete all items from cart permantly - as if done shopping
+  3. User can chose to go back to main page
   
   
