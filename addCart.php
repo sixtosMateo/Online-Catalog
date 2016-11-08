@@ -32,6 +32,12 @@ foreach($_SESSION['cart'] as $element ) {
         <main>
             <h1>Trading Card Items: </h1>
             <?=cart()?>
+            <form action="deleteCart.php">
+                <input type="submit" value="Delete Cart!" />
+            </form>
+            <form action="thankYou.php">
+                <input type="submit" value="Finished!" />
+            </form>
         </main>
     </body>
 </html>
