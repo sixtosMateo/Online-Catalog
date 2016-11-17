@@ -41,7 +41,7 @@ function statusFilter(){
         echo "<th>Status</th>";
         foreach($records as $record) {
               echo "<tr>";
-              echo "<td>" . "<input type='checkbox' name = 'cart[]' value=". $record['firstName'] . $record['lastName'] .">" . "</td>";
+              echo "<td>" . "<input type='checkbox' name = 'cart[]' value=". $record['firstName'].$record['lastName']  .">" . "</td>";
               echo "<td>" . $record['firstName'] . "</td>". "<td>" .  $record['lastName'] . "</td>". "<td>" . $record['team'] . "</td>" .  "<td>" . $record['position'] . "</td>". "<td>" . $record['status'] . "</td>";
              echo "</tr>";
           }

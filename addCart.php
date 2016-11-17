@@ -1,10 +1,37 @@
 <?php
+session_start();
+include "../../includes/dbConnection.php";
+$dbConn = getDatabaseConnection("nfl");
+
+
+
+function getSql($e){
+    
+    global $dbConn;
+     $sql="SELECT * 
+            FROM `players`";
+
+$statement = $dbConn->prepare($sql);  
+$statement->execute();
+$records = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($records as $record) {
+   $temp = $record['firstName'].$record['lastName'];
+    if ($temp ==$e ){
+        $info =$record['firstName']. " " . $record['lasstName']. " ".$record['team']. " ". $record['position'] . " ". $record['status'];
+    }
+}
+return $info;
+
+}
 
 function cart(){
+   
 session_start();
 if(!isset($_SESSION['cart'])){
     $_SESSION['cart'] = array(); 
 }
+
 
 $cart = $_GET['cart'];
     if(!empty($cart))
@@ -15,15 +42,24 @@ $cart = $_GET['cart'];
            $_SESSION['cart'][] = $element;
         } 
     }
+   
+    
     
     foreach($_SESSION['cart'] as $element ) {
-        echo "<p>" . $element . "</p>";
+        
+        
+        echo  $element . "<form action='addCart.php' onsubmit='return moreinformation(\"". getSql($element)."\")'>
+        <input type='submit' value='More Info'></form><br />";
+        
     }   
+   
     }
     else{
         header('Location: index.php');
         
     }
+    
+   
 }
 
 
@@ -34,6 +70,16 @@ $cart = $_GET['cart'];
     <head>
         <title>Project 2</title>
         <link rel="stylesheet" href="css/style.css" tyype="text/css" />
+         <script>
+
+            function moreinformation(info) {
+                
+                return confirm(info);
+                
+            }            
+            
+        </script>
+        
     </head>
     <body>
         <main>
